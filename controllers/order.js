@@ -37,6 +37,7 @@ export const placeOrder = asyncError (async(req,res,next)=>{
 
 
 
+
 export const placeOrderOnline = asyncError(async (req, res, next) => {
   const {
     shippingInfo,
@@ -72,8 +73,7 @@ export const placeOrderOnline = asyncError(async (req, res, next) => {
     order,
     orderOptions,
   });
-});
-
+})
 
 export const paymentVerification = asyncError(async (req, res, next) => {
   const {
