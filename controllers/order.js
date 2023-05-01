@@ -38,42 +38,86 @@ export const placeOrder = asyncError (async(req,res,next)=>{
 
 
 
-export const placeOrderOnline = asyncError(async (req, res, next) => {
-  const {
-    shippingInfo,
-    orderItems,
-    paymentMethod,
-    itemsPrice,
-    taxPrice,
-    shippingCharges,
-    totalAmount,
-  } = req.body;
+// export const placeOrderOnline = asyncError(async (req, res, next) => {
+//   const {
+//     shippingInfo,
+//     orderItems,
+//     paymentMethod,
+//     itemsPrice,
+//     taxPrice,
+//     shippingCharges,
+//     totalAmount,
+//   } = req.body;
 
-  const user = req.user._id;
+//   const user = req.user._id;
 
-  const orderOptions = {
-    shippingInfo,
-    orderItems,
-    paymentMethod,
-    itemsPrice,
-    taxPrice,
-    shippingCharges,
-    totalAmount,
-    user,
-  };
+//   const orderOptions = {
+//     shippingInfo,
+//     orderItems,
+//     paymentMethod,
+//     itemsPrice,
+//     taxPrice,
+//     shippingCharges,
+//     totalAmount,
+//     user,
+//   };
 
-  const options = {
-    amount: Number(totalAmount) * 100,
-    currency: "PKR",
-  };
-  const order = await instance.orders.create(options);
+//   const options = {
+//     amount: Number(totalAmount) * 100,
+//     currency: "PKR",
+//   };
+//   const order = await instance.orders.create(options);
 
-  res.status(201).json({
-    success: true,
-    order,
-    orderOptions,
-  });
-});
+//   res.status(201).json({
+//     success: true,
+//     order,
+//     orderOptions,
+//   });
+// });
+export const placeOrderOnline = async (req, res, next) => {
+  try {
+    const {
+      shippingInfo,
+      orderItems,
+      paymentMethod,
+      itemsPrice,
+      taxPrice,
+      shippingCharges,
+      totalAmount,
+    } = req.body;
+
+    const user = req.user._id;
+
+    const orderOptions = {
+      shippingInfo,
+      orderItems,
+      paymentMethod,
+      itemsPrice,
+      taxPrice,
+      shippingCharges,
+      totalAmount,
+      user,
+    };
+
+    const options = {
+      amount: Number(totalAmount) * 100,
+      currency: "PKR",
+    };
+
+    const order = await instance.orders.create(options);
+
+    res.status(201).json({
+      success: true,
+      order,
+      orderOptions,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 
 export const paymentVerification = asyncError(async (req, res, next) => {
   const {
