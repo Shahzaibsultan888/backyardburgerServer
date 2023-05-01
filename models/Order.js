@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
             type: Number,
             required: true,
         },
-        pincode: {
+        pinCode: {
             type: Number,
             required: true,
         },
