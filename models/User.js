@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
     photo: String,
     googleId: {
         type:String,
-        required:false,
+        required:true,
         unique:true,
     },
     role:{

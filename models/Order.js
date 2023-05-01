@@ -44,7 +44,7 @@ const schema = new mongoose.Schema({
                 required: true,
             },
         },
-        BurgerWithFries: {
+        chickenBurgerWithFries: {
             price: {
                 type: Number,
                 required: true,
