@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "SET NODE_ENV=production & node server.js",
-    "dev": "SET NODE_ENV=development & nodemon server.js"
+    "dev": "SET NODE_ENV=development & nodemon server.js",
+    "build":"npm i"
   },
   "author": "",
   "license": "ISC",
