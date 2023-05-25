@@ -12,7 +12,7 @@ export const connectPassport =()=>{
 
 
         const user = await User.findOne({
-            googleid: profile.id,
+            googleId: profile.id,
             
         })
         if(!user){
